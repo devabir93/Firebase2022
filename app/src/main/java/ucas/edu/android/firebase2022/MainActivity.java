@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -33,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.d("MainActivity",user.getEmail());
+
+        View headView = binding.navView.getHeaderView(0);
+        ((TextView) headView.findViewById(R.id.name)).setText(user.getDisplayName());
+        ((TextView) headView.findViewById(R.id.email)).setText(user.getEmail());
+
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override

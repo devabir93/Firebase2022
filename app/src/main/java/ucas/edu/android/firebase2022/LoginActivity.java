@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                         // try {
                         if(task.isSuccessful()){
                             Log.d("LoginActivity",task.getResult().getUser().toString());
-
+                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }else{
                             Log.d("LoginActivity",task.getException().getMessage());
                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
