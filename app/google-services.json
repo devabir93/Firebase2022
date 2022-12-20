@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "473402035204",
-    "project_id": "fir-2022-22a2e",
-    "storage_bucket": "fir-2022-22a2e.appspot.com"
+    "project_number": "606222354565",
+    "project_id": "firbase2022-ec7b8",
+    "storage_bucket": "firbase2022-ec7b8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:473402035204:android:99109e87e2ffb8f4967951",
+        "mobilesdk_app_id": "1:606222354565:android:eeb99282ce6022cf8801ec",
         "android_client_info": {
           "package_name": "ucas.edu.android.firebase2022"
         }
       },
       "oauth_client": [
         {
-          "client_id": "473402035204-aap5189k0db647dngg49r9vvlc0scku5.apps.googleusercontent.com",
+          "client_id": "606222354565-92bkqprm9vigvr57vb16rtg3vrg8rmkd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAU_hSvbl1nnuZaLK3kq2ymvHFCPFWVcJM"
+          "current_key": "AIzaSyDuj8qIZUlwTKOIEVo3Oh50ilD2dNJhmeA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "473402035204-aap5189k0db647dngg49r9vvlc0scku5.apps.googleusercontent.com",
+              "client_id": "606222354565-92bkqprm9vigvr57vb16rtg3vrg8rmkd.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
