@@ -55,14 +55,13 @@ public class HomeFragment extends Fragment {
     private void getInfoByUserUUId() {
         DocumentReference reference = firebaseFirestore.collection("users")
                 .document(currentUser.getUid());
-
         reference.collection("info")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (DocumentSnapshot documentSnapshot:
-                             queryDocumentSnapshots.getDocuments()) {
+                        for (DocumentSnapshot documentSnapshot :
+                                queryDocumentSnapshots.getDocuments()) {
                             Log.d(HomeFragment.class.getSimpleName(), documentSnapshot.getData().toString());
                         }
                     }
@@ -80,7 +79,6 @@ public class HomeFragment extends Fragment {
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            documentReference.getId();
                             Log.d(HomeFragment.class.getSimpleName(), documentReference.getId().toString());
                         }
                     });
@@ -102,6 +100,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            binding.progressBar.setVisibility(View.GONE);
                             List<Product> productList = task.getResult().toObjects(Product.class);
                             ProductAdapter productAdapter = new ProductAdapter(getActivity(), productList);
                             binding.rv.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));

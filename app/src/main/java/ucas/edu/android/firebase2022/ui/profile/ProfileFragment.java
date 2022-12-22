@@ -1,4 +1,4 @@
-package ucas.edu.android.firebase2022.ui.slideshow;
+package ucas.edu.android.firebase2022.ui.profile;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,8 +17,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 import ucas.edu.android.firebase2022.databinding.FragmentSlideshowBinding;
@@ -31,8 +28,6 @@ public class ProfileFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SlideshowViewModel slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
 
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -57,7 +52,18 @@ public class ProfileFragment extends Fragment {
                 updateEmail();
             }
         });
+
+        binding.updatePersonalInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePersonalInfo();
+            }
+        });
         return root;
+    }
+
+    private void updatePersonalInfo() {
+
     }
 
     private void updateProfile(UserProfileChangeRequest userProfileChangeRequest) {
@@ -79,6 +85,8 @@ public class ProfileFragment extends Fragment {
     }
 
     void updateEmail() {
+        //You should Allow user to enter his email and password manually.
+        //don't use a static values.
         AuthCredential authCredential = EmailAuthProvider.getCredential("abirabullah@gmail.com", "123456");
         currentUser.reauthenticate(authCredential)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
@@ -111,24 +119,6 @@ public class ProfileFragment extends Fragment {
                     }
                 });
     }
-//    private void updatePhone() {
-//        PhoneAuthCredential phoneAuthCredential;
-//        currentUser.updatePhoneNumber(phoneAuthCredential)
-//                .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        if (task.isSuccessful()) {
-//                            currentUser.reload();
-//                            Log.d("currentUser email", currentUser.getEmail());
-//                            Toast.makeText(getActivity(), currentUser.getEmail(), Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            String error = task.getException().getMessage();
-//                            Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-//    }
-
 
     @Override
     public void onDestroyView() {

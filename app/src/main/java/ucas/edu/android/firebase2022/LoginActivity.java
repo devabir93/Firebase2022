@@ -19,9 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import ucas.edu.android.firebase2022.databinding.ActivityLoginBinding;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
-    FirebaseAuth firebaseAuth;
     ActivityLoginBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-        if(firebaseUser!=null){
+        if(currentUser !=null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
         binding.button.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private void register() {
         String email = binding.editTextTextEmailAddress.getText().toString();
         String password = binding.editTextTextPassword.getText().toString();
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
+        auth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -77,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
     private void login() {
         String email = binding.editTextTextEmailAddress.getText().toString();
         String password = binding.editTextTextPassword.getText().toString();
-        firebaseAuth.signInWithEmailAndPassword(email,password)
+        auth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {

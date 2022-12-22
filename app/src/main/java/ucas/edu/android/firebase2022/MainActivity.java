@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ucas.edu.android.firebase2022.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;

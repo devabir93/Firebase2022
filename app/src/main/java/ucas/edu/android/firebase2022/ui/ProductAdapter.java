@@ -5,9 +5,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -43,6 +46,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         holder.name.setText(user.getName());
         holder.email.setText(user.getCategory());
         holder.price.setText(user.getPrice()+"");
+        if(user.getImage()!=null && !user.getImage().isEmpty()){
+            Glide.with(context).load(user.getImage()).into(holder.imageView);
+        }
     }
 
 
@@ -56,6 +62,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        private final ImageView imageView;
         TextView name, email,price;// init the item view's
 
         public MyViewHolder(View itemView) {
@@ -65,6 +72,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             name = (TextView) itemView.findViewById(R.id.name);
             email = (TextView) itemView.findViewById(R.id.email);
             price = (TextView) itemView.findViewById(R.id.price);
+            imageView = (ImageView) itemView.findViewById(R.id.imageview1);
         }
     }
 }

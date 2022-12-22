@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.slideshow.ProfileFragment">
+    android:padding="16dp"
+    tools:context=".ui.profile.ProfileFragment">
 
     <EditText
         android:id="@+id/editTextTextName"
@@ -18,7 +19,7 @@
         android:id="@+id/updateProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:text="Save Name" />
 
 
     <EditText
@@ -32,6 +33,40 @@
 
     <Button
         android:id="@+id/updateEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Email" />
+
+
+    <EditText
+        android:id="@+id/editTextTextAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter your Address"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/editTextTextCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter your City"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/editTextTextDOB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter your Date of Birth"
+        android:inputType="date"
+        />
+
+    <Button
+        android:id="@+id/updatePersonalInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save" />
