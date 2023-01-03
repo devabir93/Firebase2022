@@ -22,4 +22,10 @@
         android:name="ucas.edu.android.firebase2022.ui.profile.ProfileFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_coins"
+        android:name="ucas.edu.android.firebase2022.ui.coins.CoinsFragment"
+        android:label="@string/menu_coins"
+        tools:layout="@layout/fragment_coins" />
 </navigation>
