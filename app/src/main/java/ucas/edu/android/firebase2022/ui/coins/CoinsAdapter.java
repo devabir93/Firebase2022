@@ -59,17 +59,14 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.MyViewHolder
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private final ImageView imageView;
-        TextView name, email,price;// init the item view's
+        TextView name,price;// init the item view's
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             // get the reference of item view's
             name = (TextView) itemView.findViewById(R.id.name);
-            email = (TextView) itemView.findViewById(R.id.email);
             price = (TextView) itemView.findViewById(R.id.price);
-            imageView = (ImageView) itemView.findViewById(R.id.imageview1);
         }
     }
 }

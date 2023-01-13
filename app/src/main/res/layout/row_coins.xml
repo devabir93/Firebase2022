@@ -13,10 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp">
-        <!--
-        items for a single row of RecyclerView
-        -->
-\
+
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
@@ -26,7 +23,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/sheikl"
+            android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""

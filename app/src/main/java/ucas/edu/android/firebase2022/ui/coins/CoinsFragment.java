@@ -86,15 +86,11 @@ public class CoinsFragment extends Fragment {
 
 
     FirebaseDatabase db;
-    TextView dinarSheikl, dinarDollar;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        dinarSheikl = view.findViewById(R.id.dinar_shiekl);
-        dinarDollar = view.findViewById(R.id.dinar_dollar);
         db = FirebaseDatabase.getInstance();
-        //  getCoins();
         getRealTimeCoins();
     }
 
@@ -103,15 +99,10 @@ public class CoinsFragment extends Fragment {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        binding.progressBar.setVisibility(View.GONE);
                         Log.d("getRealTimeCoins", snapshot.toString());
                         Log.d("getRealTimeCoins2", snapshot.getValue().toString());
                         List<Coins> coinList = new ArrayList<>();
-
-                        for (Coins coin : coinList) {
-
-
-                        }
-
                         for (DataSnapshot sn : snapshot.getChildren()) {
                             Coins coins = sn.getValue(Coins.class);
                             coinList.add(coins);
@@ -130,55 +121,4 @@ public class CoinsFragment extends Fragment {
                 });
     }
 
-    private void getCoins() {
-        db.getReference("coins")
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot != null) {
-                            for (DataSnapshot noteSnapshot : snapshot.getChildren()) {
-                                Log.d("noteSnapshot", noteSnapshot.toString());
-                                Dinar dinar = noteSnapshot.getValue(Dinar.class);
-                                Log.d("dinar", dinar.toString());
-                            }
-                            Log.d("onDataChange", snapshot.toString());
-                            Log.d("getValue", snapshot.getValue().toString());
-                            Coins coins = snapshot.getValue(Coins.class);
-                            Log.d("coins", coins.toString());
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        error.toException().printStackTrace();
-                    }
-                });
-//                .addChildEventListener(new ChildEventListener() {
-//                    @Override
-//                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                })
-
-    }
 }

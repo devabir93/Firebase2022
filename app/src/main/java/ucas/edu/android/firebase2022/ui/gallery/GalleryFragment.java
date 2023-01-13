@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.ListResult;
@@ -90,7 +91,7 @@ public class GalleryFragment extends Fragment {
     private void uploadImageToFirebase() {
         ((MainActivity) getActivity()).showLoader();
         StorageReference reference = ((MainActivity) getActivity()).firebaseStorage.getReference()
-                .child("images/" + ((MainActivity) getActivity()).currentUser.getUid());
+                .child("images/" + ((MainActivity) getActivity()).currentUser.getUid()+"/"+mainImageURI.getLastPathSegment());
         UploadTask uploadTask = reference
                 .putFile(mainImageURI);
 
@@ -109,12 +110,50 @@ public class GalleryFragment extends Fragment {
                     }
                 });
 
+/*
         Task<Uri> task = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                Log.d("Upload",reference.getDownloadUrl().toString());
+                String s = reference.getDownloadUrl().getResult().toString();
+                Log.d("Upload refe", s);
+*/
+/*                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+                {
+                    @Override
+                    public void onSuccess(Uri downloadUrl)
+                    {
+                        //do something with downloadurl
+                        Log.d("onSuccess",downloadUrl.toString());
+                    }
+                });*//*
+
+                //getFiles();
+                return reference.getDownloadUrl();
+            }
+        });
+
+*/
+
+        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+                // Continue with the task to get the download URL
                 getFiles();
                 return reference.getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    Uri downloadUri = task.getResult();
+                    Log.d(" downloadUri",downloadUri.toString());
+                } else {
+                    // Handle failures
+                    // ...
+                }
             }
         });
 
