@@ -95,8 +95,7 @@ public class GalleryFragment extends Fragment {
         UploadTask uploadTask = reference
                 .putFile(mainImageURI);
 
-        uploadTask
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                         double progress = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
@@ -109,30 +108,6 @@ public class GalleryFragment extends Fragment {
                         ((MainActivity) getActivity()).dismissDialog();
                     }
                 });
-
-/*
-        Task<Uri> task = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-            @Override
-            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                String s = reference.getDownloadUrl().getResult().toString();
-                Log.d("Upload refe", s);
-*/
-/*                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
-                {
-                    @Override
-                    public void onSuccess(Uri downloadUrl)
-                    {
-                        //do something with downloadurl
-                        Log.d("onSuccess",downloadUrl.toString());
-                    }
-                });*//*
-
-                //getFiles();
-                return reference.getDownloadUrl();
-            }
-        });
-
-*/
 
         Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
